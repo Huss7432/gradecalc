@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GradeCalc — Calculator</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-indigo-50">
+  <!-- Header -->
+  <header class="w-full px-6 py-6">
+    <div class="max-w-4xl mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg">
+          <i data-lucide="calculator" class="w-5 h-5 text-white"></i>
+        </div>
+        <span class="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+          GradeCalc
+        </span>
+      </div>
+
+      <a href="home.html"
+         class="text-gray-700 hover:text-indigo-600 font-medium flex items-center gap-2">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Back to Home
+      </a>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="max-w-4xl mx-auto px-6 py-12">
+    <!-- Step 1: Subject Selector -->
+    <section id="step1" class="space-y-8 animate-in fade-in-50 duration-700">
+      <div class="bg-white/80 backdrop-blur-sm border-0 shadow-2xl rounded-3xl overflow-hidden">
+        <div class="text-center py-12 bg-gradient-to-r from-indigo-50 to-purple-50">
+          <div class="mx-auto w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+            <i data-lucide="book-open" class="w-8 h-8 text-white"></i>
+          </div>
+          <h2 class="text-4xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+            Let's Get Started!
+          </h2>
+          <p class="text-xl text-gray-600 mt-4 font-light">
+            Choose your subject to begin calculating your grade
+          </p>
+        </div>
+
+        <div class="p-12">
+          <div class="max-w-md mx-auto space-y-8">
+            <!-- Custom Select Trigger -->
+            <div class="space-y-3">
+              <label class="text-lg font-semibold text-gray-700 block">Select Subject</label>
+
+              <button id="subjectTrigger"
+                class="w-full h-16 text-left rounded-2xl border-2 border-gray-200 hover:border-indigo-300 transition-colors duration-200 bg-white/50 px-4 flex items-center justify-between">
+                <span id="subjectSelected" class="flex items-center gap-3 text-lg text-gray-700">
+                  <span class="opacity-60">Choose your subject...</span>
+                </span>
+                <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500"></i>
+              </button>
+
+              <!-- Dropdown Panel -->
+              <div id="subjectPanel"
+                   class="hidden mt-2 rounded-2xl border-0 shadow-2xl bg-white overflow-hidden">
+                <ul id="subjectList" class="py-2 max-h-72 overflow-auto"></ul>
+              </div>
+            </div>
+
+            <button id="toStep2"
+              class="w-full h-14 text-lg font-semibold rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 disabled:from-gray-300 disabled:to-gray-400 text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 transform"
+              disabled>
+              Continue
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 2: Marks Input -->
+    <section id="step2" class="hidden space-y-8 animate-in fade-in-50 duration-700">
+      <div class="bg-white/80 backdrop-blur-sm border-0 shadow-2xl rounded-3xl overflow-hidden">
+        <div class="text-center py-12 bg-gradient-to-r from-emerald-50 to-teal-50">
+          <div class="mx-auto w-16 h-16 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+            <i data-lucide="target" class="w-8 h-8 text-white"></i>
+          </div>
+          <h2 class="text-4xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+            Enter Your Marks
+          </h2>
+          <p class="text-xl text-gray-600 mt-4 font-light">
+            For <span id="subjectName" class="font-semibold text-emerald-600"></span>
+          </p>
+        </div>
+
+        <div class="p-12">
+          <div class="max-w-md mx-auto space-y-8">
+            <div class="grid grid-cols-2 gap-6">
+              <div class="space-y-3">
+                <label for="achieved" class="text-lg font-semibold text-gray-700">Marks Achieved</label>
+                <input id="achieved" type="number" placeholder="0"
+                  class="h-14 w-full text-lg rounded-2xl border-2 border-gray-200 hover:border-emerald-300 focus:border-emerald-500 transition-colors duration-200 bg-white/50 text-center font-semibold">
+              </div>
+              <div class="space-y-3">
+                <label for="total" class="text-lg font-semibold text-gray-700">Total Marks</label>
+                <input id="total" type="number" placeholder="0"
+                  class="h-14 w-full text-lg rounded-2xl border-2 border-gray-200 hover:border-emerald-300 focus:border-emerald-500 transition-colors duration-200 bg-white/50 text-center font-semibold">
+              </div>
+            </div>
+
+            <div id="errorBox" class="hidden text-center p-4 bg-red-50 rounded-2xl border border-red-200">
+              <p class="text-red-600 font-medium">Marks achieved cannot be greater than total marks</p>
+            </div>
+
+            <div id="calcBox">
+              <button id="calcBtn"
+                class="w-full h-14 text-lg font-semibold rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 disabled:from-gray-300 disabled:to-gray-400 text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 transform"
+                disabled>
+                <span class="inline-flex items-center">
+                  <i data-lucide="trending-up" class="w-5 h-5 mr-2"></i>
+                  Calculate Grade
+                </span>
+              </button>
+            </div>
+
+            <div id="progressBox" class="hidden space-y-6">
+              <div class="text-center">
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Calculating Your Grade...</h3>
+                <p class="text-gray-600">Please wait while we process your results</p>
+              </div>
+              <div class="relative">
+                <div class="h-4 rounded-full bg-gray-100"></div>
+                <div id="progressFill"
+                     class="absolute top-0 left-0 h-4 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 transition-all duration-100 ease-out shadow-lg"
+                     style="width: 0%">
+                  <div class="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-500 rounded-full animate-pulse opacity-75"></div>
+                </div>
+              </div>
+              <div class="text-center">
+                <p id="progressPct" class="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">0%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Results Display -->
+    <section id="step3" class="hidden space-y-8 animate-in fade-in-50 duration-700">
+      <div class="bg-white/80 backdrop-blur-sm border-0 shadow-2xl rounded-3xl overflow-hidden">
+        <div class="text-center py-12 bg-gradient-to-r from-yellow-50 via-emerald-50 to-blue-50">
+          <div id="trophyWrap" class="mx-auto w-20 h-20 rounded-3xl flex items-center justify-center mb-6 shadow-2xl">
+            <i data-lucide="trophy" class="w-10 h-10 text-white"></i>
+          </div>
+          <h2 class="text-4xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent mb-4">
+            Your Results Are In!
+          </h2>
+          <p class="text-xl text-gray-600 font-light">
+            Here's how you performed in <span id="resultSubject" class="font-semibold text-indigo-600"></span>
+          </p>
+        </div>
+
+        <div class="p-12">
+          <div class="max-w-2xl mx-auto">
+            <!-- Grid -->
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+              <!-- Percentage -->
+              <div class="text-center p-8 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl border border-blue-100">
+                <div id="resultPct" class="text-5xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-2">0%</div>
+                <p class="text-blue-600 font-semibold text-lg">Your Score</p>
+              </div>
+              <!-- Grade -->
+              <div class="text-center p-8 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-3xl border border-emerald-100">
+                <div id="resultGradeNum" class="text-6xl font-bold bg-clip-text text-transparent mb-2">0</div>
+                <p class="text-emerald-600 font-semibold text-lg">Your Grade</p>
+              </div>
+              <!-- Improvement -->
+              <div id="improveBox" class="text-center p-8 bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl border border-purple-100">
+                <!-- Filled by JS -->
+              </div>
+            </div>
+
+            <!-- Clean layout: removed the notes/description section underneath -->
+            <div class="grid md:grid-cols-2 gap-6">
+              <button id="againBtn"
+                class="h-16 text-lg font-semibold rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 transform inline-flex items-center justify-center">
+                <i data-lucide="rotate-ccw" class="w-5 h-5 mr-2"></i>
+                Calculate Another Grade
+              </button>
+
+              <a href="home.html"
+                 class="w-full h-16 text-lg font-semibold rounded-2xl border-2 border-gray-300 hover:border-indigo-400 hover:bg-indigo-50 hover:scale-105 transition-all duration-300 transform inline-flex items-center justify-center">
+                <i data-lucide="home" class="w-5 h-5 mr-2"></i>
+                Back to Homepage
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="calculator.js"></script>
+</body>
+</html>

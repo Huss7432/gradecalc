@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GradeCalc — Home</title>
+
+  <!-- Tailwind (keeps your exact utility classes/gradients/shadows) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide icons (non-React) -->
+  <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <!-- Custom CSS (optional space for tweaks) -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen transition-colors duration-300" id="home-body">
+  <!-- Header -->
+  <header class="w-full px-6 py-6">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg">
+          <i data-lucide="calculator" class="w-5 h-5 text-white"></i>
+        </div>
+        <span class="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+          GradeCalc
+        </span>
+      </div>
+
+      <button id="themeToggle"
+        class="rounded-xl transition-colors duration-200 p-2"
+        aria-label="Toggle theme">
+        <i id="themeIcon" class="w-5 h-5"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-6 py-20">
+    <div class="grid lg:grid-cols-2 gap-20 items-center">
+      <!-- Left Column -->
+      <div class="space-y-8">
+        <div class="space-y-6">
+          <h1 class="text-6xl font-bold leading-tight">
+            <span id="welcomeFade" class="bg-gradient-to-r bg-clip-text text-transparent">
+              Welcome To
+            </span>
+            <br />
+            <span class="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+              GradeCalc
+            </span>
+          </h1>
+          <p id="welcomePara" class="text-xl leading-relaxed font-light max-w-lg">
+            Calculate your exam grades instantly with our intelligent grade calculator. Get precise results and discover exactly what you need for your target grade.
+          </p>
+        </div>
+
+        <a href="calculator.html">
+          <button
+            class="group bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-semibold px-8 py-4 text-lg rounded-2xl shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300 transform inline-flex items-center gap-3">
+            Get Started
+            <i data-lucide="trending-up" class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"></i>
+          </button>
+        </a>
+
+        <!-- Stats -->
+        <div class="flex gap-8 pt-8">
+          <div class="text-center">
+            <div class="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">11+</div>
+            <div id="stat1" class="text-sm font-medium">Subjects Supported</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Instant</div>
+            <div id="stat2" class="text-sm font-medium">Results</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">100%</div>
+            <div id="stat3" class="text-sm font-medium">Accurate</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div class="relative">
+        <div class="relative z-10 space-y-6">
+          <!-- Card 1 -->
+          <div id="card1"
+               class="backdrop-blur-sm p-6 rounded-3xl shadow-xl transition-colors duration-300 border">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-blue-400 to-indigo-500 flex items-center justify-center">
+                <i data-lucide="book-open" class="w-6 h-6 text-white"></i>
+              </div>
+              <div>
+                <h3 id="card1Title" class="font-semibold">Multi-Subject Support</h3>
+                <p id="card1Sub" class="text-sm">Physics, Maths, English & more</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div id="card2"
+               class="backdrop-blur-sm p-6 rounded-3xl shadow-xl ml-8 transition-colors duration-300 border">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center">
+                <i data-lucide="graduation-cap" class="w-6 h-6 text-white"></i>
+              </div>
+              <div>
+                <h3 id="card2Title" class="font-semibold">Grade Boundaries</h3>
+                <p id="card2Sub" class="text-sm">Official exam board standards</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div id="card3"
+               class="backdrop-blur-sm p-6 rounded-3xl shadow-xl transition-colors duration-300 border">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-500 flex items-center justify-center">
+                <i data-lucide="trending-up" class="w-6 h-6 text-white"></i>
+              </div>
+              <div>
+                <h3 id="card3Title" class="font-semibold">Improvement Tips</h3>
+                <p id="card3Sub" class="text-sm">See what you need for higher grades</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Background blurs -->
+        <div class="absolute -top-20 -right-20 w-80 h-80 bg-gradient-to-r from-indigo-200/30 to-purple-200/30 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-20 -left-10 w-60 h-60 bg-gradient-to-r from-purple-200/30 to-pink-200/30 rounded-full blur-2xl"></div>
+      </div>
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="text-center mt-32">
+      <div id="bottomCta"
+           class="inline-flex items-center gap-2 px-6 py-3 rounded-full border transition-colors duration-300">
+        <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+        <span id="ctaText" class="text-sm font-medium">Ready to calculate your grades?</span>
+      </div>
+    </div>
+  </main>
+
+  <script src="home.js"></script>
+</body>
+</html>
